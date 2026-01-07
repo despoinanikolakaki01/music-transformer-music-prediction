@@ -23,12 +23,9 @@ The model was trained on the MAESTRO (MIDI and Audio Edited for Synchronous TRac
 ### Learning Rate Schedule
 A custom learning rate schedule was implemented to enhance training stability and convergence. The schedule employs a warmup phase followed by inverse square root decay, mathematically defined as:
 
-$$\text{lr} = d_{model}^{-0.5} \cdot \min(\text{step}^{-0.5}, \text{step} \cdot \text{warmup\_steps}^{-1.5})$$
-
-where $d_{model} = 256$ (embedding dimension) and warmup steps were set according to the original Music Transformer implementation. This adaptive learning rate strategy prevents gradient instability during early training phases while maintaining efficient convergence in later epochs.
-
-### Computational Resources
-The training process completed in approximately 13 hours.
+```math
+lr = d_{model}^{-0.5} \cdot \min(step^{-0.5}, step \cdot warmup\_steps^{-1.5})
+```
 
 ## Generated Samples
 [Link to samples folder or audio player]
