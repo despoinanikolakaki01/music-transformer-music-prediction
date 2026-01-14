@@ -1,40 +1,46 @@
-# music-transformer-music-prediction
-# Music Generation for [Music prediction and creation with using Deep Learning]
+# Music Transformer – Music Generation and Prediction
 
-Based on the [Music Transformer implementation](https://github.com/jason9693/MusicTransformer-tensorflow2.0) by jason9693.
+This repository contains the experimental results and training configuration used in my master's thesis on music generation and prediction using deep learning.
 
-## About This Project
+The implementation is based on the Music Transformer model provided by
+[jason9693/MusicTransformer-tensorflow2.0](https://github.com/jason9693/MusicTransformer-tensorflow2.0),
+licensed under the MIT License.
 
-This folder contains a modified copy of the MusicTransformer implementation from `jason9693/MusicTransformer-tensorflow2.0` (MIT License), adapted for TensorFlow 2.x compatibility and local use with custom adjustments to imports, paths, and argument handling. The codebase includes preprocessed MIDI files, training scripts, and example utilities tailored for music generation tasks. All modifications preserve the original copyright (c) 2019 Kichang-Yang as specified in the LICENSE file. When redistributing this code, ensure proper attribution and preservation of the original license terms.
+---
 
 ## Training Configuration
 
 ### Dataset
-The model was trained on a subsest of the MAESTRO (MIDI and Audio Edited for Synchronous TRacks and Organization) dataset, comprising 1,600 classical piano performances. The dataset was partitioned following standard machine learning practices:
+The model was trained on a subset of the **MAESTRO (MIDI and Audio Edited for Synchronous Tracks and Organization)** dataset, consisting of 1,600 classical piano performances. The dataset was split as follows:
+
 - **Training set**: 1,280 pieces (80%)
 - **Validation set**: 160 pieces (10%)
 - **Testing set**: 160 pieces (10%)
 
+---
+
 ### Hyperparameters
+
 | Parameter | Value |
-|-----------|-------|
+|----------|-------|
 | Epochs | 300 |
 | Batch Size | 2 |
 | Optimizer | Adam |
 | Learning Rate | Scheduled (warmup + decay) |
 | Training Duration | ~13 hours |
 
+---
+
 ### Learning Rate Schedule
-A custom learning rate schedule was implemented to enhance training stability and convergence. The schedule employs a warmup phase followed by inverse square root decay, mathematically defined as:
+A custom learning rate schedule was employed to improve training stability and convergence. The schedule consists of a warmup phase followed by inverse square root decay, defined as:
 
 ```math
 lr = d_{model}^{-0.5} \cdot \min(step^{-0.5}, step \cdot warmup\_steps^{-1.5})
 ```
 
-## Generated Samples
+### Generated Samples
+Generated MIDI samples can be found in the audio results/ directory.
+Corresponding piano roll visualizations can be found in the `piano_rolls/` directory.
 
-
-## Pretrained Weights
-Available at: results folder
-
-
+## Trained Model Weights
+The trained model weights obtained from the experiments conducted for this thesis are available in the weights/ directory.
